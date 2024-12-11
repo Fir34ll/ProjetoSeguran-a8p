@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="step-content">
+    <h2>Etapa 1 - Configuração Inicial</h2>
+    
+    <div class="key-generation-section">
+        <div class="generation-box">
+            <h3>Geração de Chaves RSA</h3>
+            <button id="generateRSA" class="btn-primary">Gerar Par de Chaves RSA</button>
+            
+            <div id="rsaKeys" class="key-display" style="display: none;">
+                <div class="key-field">
+                    <label>Chave Pública:</label>
+                    <textarea id="publicKey" readonly></textarea>
+                </div>
+                <div class="key-field">
+                    <label>Chave Privada:</label>
+                    <textarea id="privateKey" readonly></textarea>
+                </div>
+                <div class="key-actions">
+                    <button class="btn-secondary" onclick="downloadKeys()">Salvar Chaves</button>
+                    <button class="btn-secondary" onclick="downloadPrivateKeyOnly()">Salvar Apenas Chave Privada</button>
+                    <button class="btn-secondary" onclick="downloadPublicKeyOnly()">Salvar Apenas Chave Pública</button>
+                </div>
+                <div class="key-info">
+                    <p>⚠️ Salve a chave pública para usar na Etapa 2 como chave do destinatário.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="generation-box">
+            <h3>Geração de Chave AES</h3>
+            <button id="generateAES" class="btn-primary">Gerar Chave AES</button>
+            
+            <div id="aesKey" class="key-display" style="display: none;">
+                <div class="key-field">
+                    <label>Chave AES:</label>
+                    <textarea id="symmetricKey" readonly></textarea>
+                </div>
+                <button class="btn-secondary" onclick="downloadAESKey()">Salvar Chave</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-instructions">
+        <h3>Instruções</h3>
+        <ol>
+            <li>Gere suas chaves RSA clicando no botão "Gerar Par de Chaves RSA"</li>
+            <li>Salve a chave pública - você precisará dela na próxima etapa como chave do destinatário</li>
+            <li>Gere sua chave AES clicando no botão "Gerar Chave AES"</li>
+            <li>Quando terminar, clique em "Próxima Etapa"</li>
+        </ol>
+    </div>
+
+    <div class="navigation-buttons">
+        <span>
+        </span>
+        <button class="btn-next" onclick="proceedToStep2()">Próxima Etapa</button>
+    </div>
+</div>
+{% endblock %}

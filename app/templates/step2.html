@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="step-content">
+    <h2>Etapa 2 - Preparação do Ambiente</h2>
+    
+    <div class="preparation-section">
+        <div class="import-box">
+            <h3>Importação da Chave Pública do Destinatário</h3>
+            <div class="key-help">
+                <p>Use a chave pública que você salvou na Etapa 1 como chave do destinatário.</p>
+            </div>
+            <div class="file-input-container">
+                <input type="file" id="recipientKeyFile" accept=".pem" class="file-input">
+                <label for="recipientKeyFile" class="btn-primary">Selecionar Chave Pública</label>
+                <span id="selectedKeyFileName" class="file-name"></span>
+            </div>
+            <div id="recipientKeyDisplay" class="key-display" style="display: none;">
+                <div class="key-field">
+                    <label>Chave Pública do Destinatário:</label>
+                    <textarea id="recipientKey" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="file-box">
+            <h3>Seleção do Arquivo</h3>
+            <div class="file-input-container">
+                <input type="file" id="fileToEncrypt" class="file-input">
+                <label for="fileToEncrypt" class="btn-primary">Selecionar Arquivo</label>
+                <span id="selectedFileName" class="file-name"></span>
+            </div>
+            
+            <div id="fileContent" class="file-display" style="display: none;">
+                <h4>Conteúdo do Arquivo:</h4>
+                <div class="content-preview">
+                    <textarea id="filePreview" readonly></textarea>
+                </div>
+                <div class="hash-info">
+                    <label>Hash SHA-256 do arquivo:</label>
+                    <input type="text" id="fileHash" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <button class="btn-back" onclick="window.location.href='/step1'">Voltar</button>
+        <button class="btn-next" onclick="proceedToStep3()">Próxima Etapa</button>
+    </div>
+</div>
+{% endblock %}

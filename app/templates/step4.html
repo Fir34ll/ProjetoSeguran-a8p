@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="step-content">
+    <h2>Etapa 4 - Proteção da Chave Simétrica</h2>
+    
+    <div class="encryption-section">
+        <div class="process-box">
+            <h3>Cifragem da Chave AES</h3>
+            <div class="process-status">
+                <div class="status-icon" id="keyEncryptionStatus">⏳</div>
+                <p>Status da Cifragem da Chave</p>
+            </div>
+            <div class="process-details">
+                <p>Cifrando a chave AES com a chave pública do destinatário...</p>
+                <div class="progress-bar-container">
+                    <div class="progress-indicator" id="keyEncryptionProgress"></div>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="startKeyEncryption()">Iniciar Cifragem da Chave</button>
+        </div>
+
+        <div class="info-box">
+            <h3>Por que este passo é necessário?</h3>
+            <p>A chave AES precisa ser protegida para que apenas o destinatário possa acessá-la usando sua chave privada RSA.</p>
+            <ul>
+                <li>A chave AES é usada para cifrar o arquivo</li>
+                <li>A chave AES é cifrada com a chave pública do destinatário</li>
+                <li>Apenas o destinatário poderá decifrar a chave AES com sua chave privada</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="key-info-section">
+        <h3>Informações da Chave</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Tamanho da Chave AES Original:</label>
+                <span id="originalKeySize">-</span>
+            </div>
+            <div class="info-item">
+                <label>Tamanho da Chave AES Cifrada:</label>
+                <span id="encryptedKeySize">-</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <button class="btn-back" onclick="window.location.href='/step3'">Voltar</button>
+        <button class="btn-next" onclick="proceedToStep5()" id="nextStepBtn" disabled>Próxima Etapa</button>
+    </div>
+</div>
+{% endblock %}

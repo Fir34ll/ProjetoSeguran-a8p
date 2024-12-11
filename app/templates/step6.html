@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="step-content">
+    <h2>Etapa 6 - Verificação e Descriptografia</h2>
+    
+    <div class="verification-section">
+        <div class="process-box">
+            <h3>Verificação da Assinatura</h3>
+            <div class="process-status">
+                <div class="status-icon" id="verificationStatus">⏳</div>
+                <p>Status da Verificação</p>
+            </div>
+            <div class="key-input">
+                <h4>Chave Privada do Destinatário</h4>
+                <div class="file-input-container">
+                    <input type="file" id="recipientPrivateKeyFile" accept=".pem" class="file-input">
+                    <label for="recipientPrivateKeyFile" class="btn-primary">Selecionar Arquivo de Chave Privada</label>
+                    <span id="selectedKeyFileName" class="file-name"></span>
+                </div>
+                <div class="key-help">
+                    <p>⚠️ Faça upload do arquivo de chave privada que foi salvo na Etapa 1.</p>
+                </div>
+            </div>
+            <button class="btn-primary verify-btn" onclick="verifySignature()">Verificar Assinatura</button>
+        </div>
+
+        <div class="process-box">
+            <h3>Descriptografia</h3>
+            <div class="process-status">
+                <div class="status-icon" id="decryptionStatus">⏳</div>
+                <p>Status da Descriptografia</p>
+            </div>
+            <div class="file-input-container">
+                <input type="file" id="encryptedPackageFile" accept=".zip" class="file-input">
+                <label for="encryptedPackageFile" class="btn-primary">Selecionar Arquivo .zip</label>
+                <span id="selectedPackageFileName" class="file-name"></span>
+            </div>
+            <button class="btn-primary" onclick="startDecryption()" id="decryptBtn" disabled>
+                Iniciar Descriptografia
+            </button>
+        </div>
+    </div>
+
+    <div class="process-visualization" id="processVisualization" style="display: none;">
+        <h3>Processo de Descriptografia</h3>
+        <div class="process-steps">
+            <div class="process-step" id="step1">
+                <div class="step-icon">📦</div>
+                <div class="step-description">
+                    <h4>1. Pacote Recebido</h4>
+                    <p>Arquivo ZIP contendo todos os elementos cifrados</p>
+                    <div class="step-status">⏳</div>
+                </div>
+            </div>
+            <div class="process-step" id="step2">
+                <div class="step-icon">🔑</div>
+                <div class="step-description">
+                    <h4>2. Descriptografia da Chave AES</h4>
+                    <p>Usando a chave privada RSA do destinatário</p>
+                    <div class="step-status">⏳</div>
+                </div>
+            </div>
+            <div class="process-step" id="step3">
+                <div class="step-icon">🔓</div>
+                <div class="step-description">
+                    <h4>3. Descriptografia do Arquivo</h4>
+                    <p>Usando a chave AES recuperada</p>
+                    <div class="step-status">⏳</div>
+                </div>
+            </div>
+            <div class="process-step" id="step4">
+                <div class="step-icon">✅</div>
+                <div class="step-description">
+                    <h4>4. Verificação da Assinatura</h4>
+                    <p>Confirmação da autenticidade</p>
+                    <div class="step-status">⏳</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="result-section" style="display: none;" id="resultSection">
+        <h3>Resultado Final</h3>
+        <div class="file-preview">
+            <label>Conteúdo do Arquivo Original:</label>
+            <textarea id="decryptedContent" readonly></textarea>
+        </div>
+        <button class="btn-secondary" onclick="downloadOriginalFile()">
+            Baixar Arquivo Original
+        </button>
+    </div>
+
+    <div class="navigation-buttons">
+        <button class="btn-back" onclick="window.location.href='/step5'">Voltar</button>
+        <button class="btn-home" onclick="window.location.href='/'">Voltar ao Início</button>
+    </div>
+</div>
+
+<style>
+.process-visualization {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.process-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.step-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+    border-radius: 50%;
+}
+
+.step-description {
+    flex-grow: 1;
+}
+
+.step-description h4 {
+    margin: 0;
+    color: #333;
+}
+
+.step-description p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.step-status {
+    font-size: 20px;
+}
+
+.process-step.completed {
+    background-color: #e8f5e9;
+}
+
+.process-step.active {
+    border: 2px solid #4caf50;
+}
+</style>
+{% endblock %}

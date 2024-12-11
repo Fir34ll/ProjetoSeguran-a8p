@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="step-content">
+    <h2>Etapa 5 - Empacotamento e Simulação</h2>
+    
+    <div class="packaging-section">
+        <div class="process-box">
+            <h3>Empacotamento dos Elementos</h3>
+            <div class="package-items">
+                <div class="package-item">
+                    <span class="item-icon">📄</span>
+                    <span class="item-label">Arquivo Cifrado</span>
+                    <span class="item-status" id="fileStatus">⏳</span>
+                </div>
+                <div class="package-item">
+                    <span class="item-icon">🔑</span>
+                    <span class="item-label">Chave AES Cifrada</span>
+                    <span class="item-status" id="keyStatus">⏳</span>
+                </div>
+                <div class="package-item">
+                    <span class="item-icon">✍️</span>
+                    <span class="item-label">Assinatura Digital</span>
+                    <span class="item-status" id="signatureStatus">⏳</span>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="startPackaging()">Iniciar Empacotamento</button>
+        </div>
+
+        <div class="download-box">
+            <h3>Arquivo Final</h3>
+            <div class="file-info">
+                <p>O arquivo final contém:</p>
+                <ul>
+                    <li>Arquivo original cifrado com AES</li>
+                    <li>Chave AES cifrada com RSA</li>
+                    <li>Assinatura digital do arquivo</li>
+                </ul>
+            </div>
+            <button class="btn-secondary" id="downloadBtn" onclick="downloadFinalPackage()" disabled>
+                Baixar Arquivo Final
+            </button>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <button class="btn-back" onclick="window.location.href='/step4'">Voltar</button>
+        <button class="btn-next" onclick="window.location.href='/step6'" id="nextStepBtn">Próxima Etapa</button>
+    </div>
+</div>
+{% endblock %}

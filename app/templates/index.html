@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="welcome-section">
+    <h1>Sistema de Criptografia Segura</h1>
+    <p>Bem-vindo ao sistema de demonstração de criptografia, assinatura digital e funções hash.</p>
+    
+    <div class="features">
+        <div class="feature-card">
+            <h3>Criptografia RSA</h3>
+            <p>Geração de chaves públicas e privadas para comunicação segura.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Criptografia AES</h3>
+            <p>Criptografia simétrica para dados sensíveis.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Assinatura Digital</h3>
+            <p>Garantia de autenticidade e integridade.</p>
+        </div>
+    </div>
+
+    <a href="{{ url_for('main.step1') }}" class="btn-start">Iniciar Processo</a>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Criptografia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">CryptoSystem</div>
+        <div class="progress-bar">
+            <div class="step {% if active_step >= 1 %}active{% endif %}">Etapa 1</div>
+            <div class="step {% if active_step >= 2 %}active{% endif %}">Etapa 2</div>
+            <div class="step {% if active_step >= 3 %}active{% endif %}">Etapa 3</div>
+            <div class="step {% if active_step >= 4 %}active{% endif %}">Etapa 4</div>
+            <div class="step {% if active_step >= 5 %}active{% endif %}">Etapa 5</div>
+            <div class="step {% if active_step >= 6 %}active{% endif %}">Etapa 6</div>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

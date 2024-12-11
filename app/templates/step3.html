@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="step-content">
+    <h2>Etapa 3 - Processo de Assinatura e Cifragem</h2>
+    
+    <div class="process-section">
+        <div class="process-box">
+            <h3>Assinatura Digital</h3>
+            <div class="process-status">
+                <div class="status-icon" id="signatureStatus">⏳</div>
+                <p>Status da Assinatura Digital</p>
+            </div>
+            <div class="process-details">
+                <p>Assinando o arquivo com sua chave privada...</p>
+                <div class="progress-bar-container">
+                    <div class="progress-indicator" id="signatureProgress"></div>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="startSigningProcess()">Iniciar Assinatura</button>
+        </div>
+
+        <div class="process-box">
+            <h3>Cifragem do Arquivo</h3>
+            <div class="process-status">
+                <div class="status-icon" id="encryptionStatus">⏳</div>
+                <p>Status da Cifragem</p>
+            </div>
+            <div class="process-details">
+                <p>Cifrando o arquivo com a chave AES...</p>
+                <div class="progress-bar-container">
+                    <div class="progress-indicator" id="encryptionProgress"></div>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="startEncryptionProcess()">Iniciar Cifragem</button>
+        </div>
+    </div>
+
+    <div class="process-info">
+        <h3>Informações do Processo</h3>
+        <div class="info-box">
+            <p><strong>Arquivo Original:</strong> <span id="originalFileName">-</span></p>
+            <p><strong>Tamanho:</strong> <span id="fileSize">-</span></p>
+            <p><strong>Hash SHA-256:</strong> <span id="fileHash">-</span></p>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <button class="btn-back" onclick="window.location.href='/step2'">Voltar</button>
+        <button class="btn-next" onclick="proceedToStep4()" id="nextStepBtn" disabled>Próxima Etapa</button>
+    </div>
+</div>
+{% endblock %}
